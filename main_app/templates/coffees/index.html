@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>coffee List</h1>
+
+{% for coffee in coffees %}
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title"><a href="{% url 'detail' coffee.id %}">{{ coffee.name }}</a></span>
+            <p>Region: {{ coffee.region }}</p>
+            <p>Description: {{ coffee.description }}</p>
+        </div>
+    </div>
+
+
+{% endfor %}
+
+{% endblock %}
+

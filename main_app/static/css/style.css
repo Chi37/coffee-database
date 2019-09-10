@@ -5,3 +5,10 @@
 .page-footer {
     background-color: lightblue;
 }
+
+header {
+    background: url(../imgs/cover.jpg);
+    background-size: cover;
+    background-position: center;
+    min-height: 700px;
+}

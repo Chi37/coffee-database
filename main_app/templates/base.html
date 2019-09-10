@@ -15,13 +15,13 @@
         <header class="navbar-fixed">
             <nav>
                 <div class="nav-wrapper">
-                    <a href="#" class="brand-logo">Logo</a>
-                    <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    <ul id="nav-mobile">
                         <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Coffee Collector</a></li>
                     </ul>
                     <ul class="right">
-                        <li><a href="/about">About</a></li>
-                        <li><a href="/Coffees">View All My Coffees</a></li>
+                        <li><a href="{% url 'about' %}">About</a></li>
+                        <li><a href="{% url 'index' %}">My Coffees</a></li>
+                        <li><a href="{% url 'cats_create' %}">Add Coffee</a></li>
                     </ul>
                 </div>
             </nav>
