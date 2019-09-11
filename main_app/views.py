@@ -27,14 +27,17 @@ class CoffeeDetailView(DetailView):
             coffee = Coffee.objects.get(pk = primary_key)
         except Coffee.DoesNotExist:
             raise Http404('Coffee Does Not Exist')
-
         return render(request, 'coffees/detail.html', { 'coffee': coffee } )
 
 
 class CoffeeCreateView(CreateView):
-  model = Coffee
-  fields = '__all__'
-
-class CoffeeDeleteView(DeleteView):
     model = Coffee
-    
+    fields = '__all__'
+
+class CoffeeDelete(DeleteView):
+    model = Coffee
+    success_url = '/coffees/'
+
+class CoffeeUpdateView(UpdateView):
+	model = Coffee
+	fields = ['region','description']

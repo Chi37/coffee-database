@@ -6,8 +6,8 @@
         <p>{{coffee.name}} is from {{coffee.region}}</p>
         <p>{{coffee.description}}</p>
         <div class="card-action">
-            <a href="#">Edit</a>
-            <a href="#">Delete</a>
+            <a href="{% url 'coffees_update' coffee.id %}">Edit</a>
+            <a href="{% url 'coffees_delete' coffee.id %}">Delete</a>
         </div>
     </div>
 </div>
