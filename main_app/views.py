@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import Http404
 from django.http import HttpResponse
 from django.views.generic import ListView
@@ -6,29 +6,46 @@ from django.views.generic import DetailView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from .models import Coffee
+from .forms import MethodForm
 
 
 
 def home(request):
-    return render(request, 'about.html')
+	return render(request, 'about.html')
 
 def about(request):
-    return render(request, 'about.html')
+	return render(request, 'about.html')
 
 def index(request):
-    coffees = Coffee.objects.all()
-    return render(request, 'coffees/index.html', { 'coffees': coffees })
+	coffees = Coffee.objects.all()
+	return render(request, 'coffees/index.html', { 'coffees': coffees })
     
 
-class CoffeeDetailView(DetailView):
-    model = Coffee
-    def coffee_detail_view(request, primary_key):
-        try:
-            coffee = Coffee.objects.get(pk = primary_key)
-        except Coffee.DoesNotExist:
-            raise Http404('Coffee Does Not Exist')
-        return render(request, 'coffees/detail.html', { 'coffee': coffee } )
+# class CoffeeDetailView(DetailView):
+# 	model = Coffee
+# 	method_form = MethodForm()
 
+
+def coffees_detail(request, coffee_id):
+	coffee = Coffee.objects.get(id=coffee_id)
+	method_form = MethodForm()
+	return render(request, 'coffees/detail.html', {
+    # pass the coffee and feeding_form as context
+    'coffee': coffee, 
+		'method_form': method_form,
+  })
+
+def add_method(request, coffee_id):
+	# create the ModelForm using the data in request.POST
+  form = MethodForm(request.POST)
+  # validate the form
+  if form.is_valid():
+    # don't save the form to the db until it
+    # has the cat_id assigned
+    new_method = form.save(commit=False)
+    new_method.coffee_id = coffee_id
+    new_method.save()
+  return redirect('detail', coffee_id=coffee_id)
 
 class CoffeeCreateView(CreateView):
     model = Coffee

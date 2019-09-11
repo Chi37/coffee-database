@@ -5,10 +5,27 @@
         <span class="card-title">{{ coffee.name }}</span>
         <p>{{coffee.name}} is from {{coffee.region}}</p>
         <p>{{coffee.description}}</p>
+        <p>{{title}}</p>
         <div class="card-action">
             <a href="{% url 'coffees_update' coffee.id %}">Edit</a>
             <a href="{% url 'coffees_delete' coffee.id %}">Delete</a>
         </div>
     </div>
 </div>
+<div class="col s6">
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ method_form.as_p }}
+        <input type="submit" class="btn" value="Add Method">
+    </form>
+</div>
+
+
+<script>
+  // initialize the methodselect
+    var selectEl = document.getElementById('id_methods');
+    M.FormSelect.init(selectEl);
+</script>
+
 {% endblock %}
+
