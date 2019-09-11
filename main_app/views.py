@@ -47,6 +47,7 @@ def add_method(request, coffee_id):
     new_method.save()
   return redirect('detail', coffee_id=coffee_id)
 
+
 class CoffeeCreateView(CreateView):
     model = Coffee
     fields = '__all__'

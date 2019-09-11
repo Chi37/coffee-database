@@ -13,13 +13,22 @@
     </div>
 </div>
 <div class="col s6">
-    <form action="" method="post">
+    <form action="{% url 'add_method' coffee.id %}" method="post">
         {% csrf_token %}
         {{ method_form.as_p }}
         <input type="submit" class="btn" value="Add Method">
     </form>
+<table class="striped">
+	<thead>
+		<tr><th>Method</th></tr>
+			</thead>
+			<tbody>
+			{% for method in coffee.method_set.all %}
+			<tr>
+		<td>{{method.get_methods_display}}</td>
+</tr>
+{% endfor %}
 </div>
-
 
 <script>
   // initialize the methodselect
