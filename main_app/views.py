@@ -4,7 +4,9 @@ from django.http import HttpResponse
 from django.views.generic import ListView
 from django.views.generic import DetailView
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from .models import Coffee
+
 
 
 def home(request):
@@ -29,3 +31,10 @@ class CoffeeDetailView(DetailView):
         return render(request, 'coffees/detail.html', { 'coffee': coffee } )
 
 
+class CoffeeCreateView(CreateView):
+  model = Coffee
+  fields = '__all__'
+
+class CoffeeDeleteView(DeleteView):
+    model = Coffee
+    
