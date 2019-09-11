@@ -20,8 +20,6 @@ class Coffee(models.Model):
     def get_absolute_url(self):
         return reverse('detail', kwargs = {'pk': self.id}) 
 
-
-
 class Method(models.Model):
   methods = models.CharField(
     max_length=1,
