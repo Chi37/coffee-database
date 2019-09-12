@@ -22,9 +22,13 @@ def index(request):
 def coffees_detail(request, coffee_id):
 	coffee = Coffee.objects.get(id=coffee_id)
 	method_form = MethodForm()
+	store_form = MethodForm()
+	store_coffee_unavail = Store.objects.exclude(id__in = coffee.stores.all().values_list('id'))
+
 	return render(request, 'coffees/detail.html', {
     'coffee': coffee, 
 		'method_form': method_form,
+		'stores': store_coffee_unavail
   })
 
 def add_method(request, coffee_id):
