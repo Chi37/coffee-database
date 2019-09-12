@@ -5,7 +5,7 @@ from django.views.generic import ListView
 from django.views.generic import DetailView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from .models import Coffee
+from .models import Coffee, Store
 from .forms import MethodForm
 
 
@@ -59,3 +59,15 @@ class CoffeeDelete(DeleteView):
 class CoffeeUpdateView(UpdateView):
 	model = Coffee
 	fields = ['region','description']
+
+
+class StoreListView(ListView):
+	model = Store
+
+class StoreCreateView(CreateView):
+	model = Store
+	fields = '__all__'
+
+class StoreDetailView(DetailView):
+	model = Store
+	fields = '__all__'
