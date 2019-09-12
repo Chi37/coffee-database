@@ -28,17 +28,9 @@ class Method(models.Model):
   coffee = models.ForeignKey(Coffee, on_delete=models.CASCADE)
 
   def __str__(self):
-    # Nice method for obtaining the friendly value of a Field.choice
     return f"{self.get_methods_display()}"
 
-#   # change the default sort
-# class Meta:
-#   ordering = ['-date']
 
 class Store(models.Model):
   name = models.CharField(max_length=50)
   city = models.CharField(max_length=20)
-
-  def __str__(self):
-    return self.name
-
