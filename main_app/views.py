@@ -69,6 +69,15 @@ class StoreUpdateView(UpdateView):
 	model = Store
 	fields = '__all__'
 
+class StoreDeleteView(DeleteView):
+	model = Store
+	success_url = '/stores/'
+
 def assoc_store(request, coffee_id, store_id):
 	Coffee.objects.get(id=coffee_id).stores.add(store_id)
 	return redirect('detail', coffee_id=coffee_id)
+
+def delete_assoc_store(request, coffee_id, store_id):
+  store = Store.objects.get(id=store_id)
+  Coffee.objects.get(id=coffee_id).stores.remove(store)
+  return redirect('detail', coffee_id=coffee_id)
